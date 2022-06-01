@@ -14,15 +14,15 @@ import lombok.Data;
 @Entity
 @Table(name = "feedback_feedbacks")
 @Data
-public class FeedBack {
+public class Feedback {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
-  private FeedBackType type;
+  private FeedbackType type;
   private String comment;
   private String screenshotUrl;
-  private FeedBackStatus status;
+  private FeedbackStatus status;
   private OffsetDateTime createdAt;
   private OffsetDateTime modifiedAt;
 

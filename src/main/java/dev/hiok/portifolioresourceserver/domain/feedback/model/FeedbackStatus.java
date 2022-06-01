@@ -1,6 +1,6 @@
 package dev.hiok.portifolioresourceserver.domain.feedback.model;
 
-public enum FeedBackStatus {
+public enum FeedbackStatus {
   PENDING,
   REJECTED,
   RESOLVED,

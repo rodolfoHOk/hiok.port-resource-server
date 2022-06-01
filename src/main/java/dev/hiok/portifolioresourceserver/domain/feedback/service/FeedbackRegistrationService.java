@@ -1,5 +1,6 @@
 package dev.hiok.portifolioresourceserver.domain.feedback.service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -14,55 +15,61 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dev.hiok.portifolioresourceserver.domain.exception.EntityInUseException;
 import dev.hiok.portifolioresourceserver.domain.exception.EntityNotFoundException;
-import dev.hiok.portifolioresourceserver.domain.feedback.model.FeedBack;
-import dev.hiok.portifolioresourceserver.domain.feedback.model.FeedBackStatus;
-import dev.hiok.portifolioresourceserver.domain.feedback.repository.FeedBackRepository;
+import dev.hiok.portifolioresourceserver.domain.feedback.model.Feedback;
+import dev.hiok.portifolioresourceserver.domain.feedback.model.FeedbackStatus;
+import dev.hiok.portifolioresourceserver.domain.feedback.repository.FeedbackRepository;
 
 @Service
-public class FeedbackService {
+public class FeedbackRegistrationService {
   
   @Autowired
-  private FeedBackRepository repository;
+  private FeedbackRepository feedbackRepository;
 
   @Autowired
   private ModelMapper modelMapper;
 
   @Transactional
-  public FeedBack create(FeedBack feedBack) {
-    return repository.save(feedBack);
+  public Feedback create(Feedback feedBack) {
+    feedBack.setStatus(FeedbackStatus.PENDING);
+    feedBack.setCreatedAt(OffsetDateTime.now());
+    
+    return feedbackRepository.save(feedBack);
   }
 
-  public Page<FeedBack> list(Pageable pageable) {
+  public Page<Feedback> search(FeedbackStatus status, Pageable pageable) {
     Pageable pagingSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), 
       Sort.Direction.DESC, "createdAt");
-    return repository.findAll(pagingSort);
+
+    if (status != null) {
+      return feedbackRepository.findByStatus(status, pagingSort);
+    }
+
+    return feedbackRepository.findAll(pagingSort);
   }
 
-  public Page<FeedBack> listByStatus(FeedBackStatus status, Pageable pageable) {
-    Pageable pagingSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), 
-      Sort.Direction.DESC, "createdAt");
-    return repository.findByStatus(status, pagingSort);
-  }
-
-  public FeedBack getById(UUID id) {
-    return repository.findById(id).orElseThrow(
+  public Feedback searchById(UUID id) {
+    return feedbackRepository.findById(id).orElseThrow(
       () -> new EntityNotFoundException("Feedback not found with informed id: " + id));
   }
 
   @Transactional
-  public FeedBack update(UUID id, FeedBack feedBack) {
-    FeedBack existFeedBack = getById(id);
+  public Feedback update(UUID id, Feedback feedBack) {
+    Feedback existFeedBack = searchById(id);
+    
     modelMapper.map(feedBack, existFeedBack);
-    return repository.save(existFeedBack);
+    existFeedBack.setModifiedAt(OffsetDateTime.now());
+    
+    return feedbackRepository.save(existFeedBack);
   }
 
   @Transactional
   public void delete(UUID id) {
-    if (!repository.existsById(id)) {
+    if (!feedbackRepository.existsById(id)) {
       throw new EntityNotFoundException("Feedback not found with informed id: " + id);
     }
+    
     try {
-      repository.deleteById(id);
+      feedbackRepository.deleteById(id);
     } catch(DataIntegrityViolationException e) {
       throw new EntityInUseException("Feedback is in use and cannot be deleted");
     }
