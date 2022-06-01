@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,10 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.hiok.portifolioresourceserver.api.feedback.assembler.FeedbackRequestDisassembler;
 import dev.hiok.portifolioresourceserver.api.feedback.assembler.FeedbackResponseAssembler;
 import dev.hiok.portifolioresourceserver.api.feedback.model.request.FeedbackRequest;
+import dev.hiok.portifolioresourceserver.api.feedback.model.request.UpdateFeedbackStatusRequest;
 import dev.hiok.portifolioresourceserver.api.feedback.model.response.FeedbackResponse;
 import dev.hiok.portifolioresourceserver.domain.feedback.model.Feedback;
 import dev.hiok.portifolioresourceserver.domain.feedback.model.FeedbackStatus;
 import dev.hiok.portifolioresourceserver.domain.feedback.service.FeedbackRegistrationService;
+import dev.hiok.portifolioresourceserver.domain.feedback.service.SearchFeedbacksService;
+import dev.hiok.portifolioresourceserver.domain.feedback.service.UpdateFeedbackStatusService;
 
 @RestController
 @RequestMapping("/v1/feedbacks")
@@ -36,6 +40,12 @@ public class FeedbackController {
 
   @Autowired
   private FeedbackRegistrationService feedbackRegistrationService;
+
+  @Autowired
+  private SearchFeedbacksService searchFeedbacksService;
+
+  @Autowired
+  private UpdateFeedbackStatusService updateFeedbackStatusService;
 
   @Autowired
   private FeedbackResponseAssembler feedbackResponseAssembler;
@@ -56,7 +66,7 @@ public class FeedbackController {
   public Page<FeedbackResponse> search(
     @RequestParam("status") FeedbackStatus status,
     @PageableDefault(size = 9) Pageable pageable) {
-    Page<Feedback> foundFeedbacks = feedbackRegistrationService.search(status, pageable);
+    Page<Feedback> foundFeedbacks = searchFeedbacksService.search(status, pageable);
 
     List<FeedbackResponse> feedbacksResponse = 
       feedbackResponseAssembler.toCollectionRepresentationModel(foundFeedbacks.getContent());
@@ -75,7 +85,9 @@ public class FeedbackController {
   }
 
   @PutMapping("/{id}")
-  public FeedbackResponse update(@PathVariable UUID id, @Valid @RequestBody FeedbackRequest feedbackRequest) {
+  public FeedbackResponse update(
+    @PathVariable UUID id, 
+    @Valid @RequestBody FeedbackRequest feedbackRequest) {
     Feedback feedbackEntity = feedbackRequestDisassembler.toEntityModel(feedbackRequest);
 
     Feedback updatedFeedback = feedbackRegistrationService.update(id, feedbackEntity);
@@ -87,6 +99,16 @@ public class FeedbackController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable UUID id) {
     feedbackRegistrationService.delete(id);
+  }
+
+  @PatchMapping("/{id}")
+  public FeedbackResponse updateStatus(
+    @PathVariable UUID id, 
+    @Valid @RequestBody UpdateFeedbackStatusRequest updateFeedbackStatusRequest) {
+    Feedback updatedFeedback = 
+      updateFeedbackStatusService.updateStatus(id, updateFeedbackStatusRequest.getStatus());
+
+    return feedbackResponseAssembler.toRepresentationModel(updatedFeedback);
   }
 
 }

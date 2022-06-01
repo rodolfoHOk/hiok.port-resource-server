@@ -19,14 +19,13 @@ import javax.validation.Payload;
   ElementType.TYPE_USE
 })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { MultipartFileSizeValidator.class })
-public @interface MultipartFileSize {
-  
-  String message() default "Invalid file size";
+@Constraint(validatedBy = { ValueOfEnumValidator.class })
+public @interface ValueOfEnum {
+  String message() default "Invalid value";
 
   Class<?>[] groups() default { };
 
   Class<? extends Payload>[] payload() default { };
 
-  String max();
+  Class<? extends Enum<?>> enumClass();
 }

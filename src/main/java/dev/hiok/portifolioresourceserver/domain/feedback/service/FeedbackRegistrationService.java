@@ -6,10 +6,6 @@ import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,17 +30,6 @@ public class FeedbackRegistrationService {
     feedBack.setCreatedAt(OffsetDateTime.now());
     
     return feedbackRepository.save(feedBack);
-  }
-
-  public Page<Feedback> search(FeedbackStatus status, Pageable pageable) {
-    Pageable pagingSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), 
-      Sort.Direction.DESC, "createdAt");
-
-    if (status != null) {
-      return feedbackRepository.findByStatus(status, pagingSort);
-    }
-
-    return feedbackRepository.findAll(pagingSort);
   }
 
   public Feedback searchById(UUID id) {
