@@ -6,11 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
 import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackRepository;
 
+@Service
 public class SearchFeedbacksService {
   
   @Autowired

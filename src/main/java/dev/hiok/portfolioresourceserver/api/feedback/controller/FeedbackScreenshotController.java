@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dev.hiok.portfolioresourceserver.api.feedback.assembler.FeedbackScreenshotResponseAssembler;
 import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackScreenshotRequest;
 import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackScreenshotResponse;
+import dev.hiok.portfolioresourceserver.api.feedback.openapi.controller.FeedbackScreenshotControllerOpenApi;
 import dev.hiok.portfolioresourceserver.domain.exception.EntityNotFoundException;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
 import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackScreenshotCatalogService;
@@ -34,7 +35,7 @@ import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 
 @RestController
 @RequestMapping("/v1/feedbacks/{id}/screenshot")
-public class FeedbackScreenshotController {
+public class FeedbackScreenshotController implements FeedbackScreenshotControllerOpenApi {
 
   @Autowired
   private FeedbackScreenshotCatalogService feedbackScreenshotCatalogService;
@@ -45,6 +46,7 @@ public class FeedbackScreenshotController {
   @Autowired
   private StorageService storageService;
 
+  @Override
   @GetMapping(produces = MediaType.ALL_VALUE)
   public ResponseEntity<?> search(
     @PathVariable UUID id, 
@@ -83,6 +85,7 @@ public class FeedbackScreenshotController {
     }
   }
 
+  @Override
   @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public FeedbackScreenshotResponse replace(
     @PathVariable UUID id,
@@ -101,6 +104,7 @@ public class FeedbackScreenshotController {
     return feedbackScreenshotResponseAssembler.toRepresentationModel(savedScreenshot);
   }
 
+  @Override
   @DeleteMapping
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void remove(@PathVariable UUID id) {

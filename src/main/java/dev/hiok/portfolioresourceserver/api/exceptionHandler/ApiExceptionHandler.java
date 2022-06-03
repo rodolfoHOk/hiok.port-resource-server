@@ -83,7 +83,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(ValidationException.class)
   public ResponseEntity<?> handleValidationException(ValidationException ex, WebRequest request) {
     var status = HttpStatus.BAD_REQUEST;
-    var body = createProblemDetailsWithInvalidParams(ex.getBindingResult(), status);
+
+    ProblemDetails body = null;
+    if (ex.getBindingResult() != null) {
+      body = createProblemDetailsWithInvalidParams(ex.getBindingResult(), status);
+    } else {
+      body = createProblemDetails(ProblemType.INVALID_DATA, status, ex.getMessage());
+    }
 
     return handleExceptionInternal(ex, body, new HttpHeaders(), status, request);
   }

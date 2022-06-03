@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import dev.hiok.portfolioresourceserver.domain.exception.ValidationException;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
 import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackRepository;
@@ -34,7 +35,7 @@ public class FeedbackScreenshotCatalogService {
     UUID id = feedbackScreenshot.getId();
     
     Feedback existingFeedback = feedbackRepository.findById(id).orElseThrow(
-      () -> new EntityNotFoundException("Feedback not found with informed id: " + id));
+      () -> new ValidationException("Invalid Feedback id. Not exist feedback with id: " + id));
 
     Optional<FeedbackScreenshot> existingScreenshot = 
       feedbackScreenshotRepository.findById(id);
@@ -66,7 +67,7 @@ public class FeedbackScreenshotCatalogService {
   @Transactional
   public void remove(UUID id) {
     Feedback existingFeedback = feedbackRepository.findById(id).orElseThrow(
-      () -> new EntityNotFoundException("Feedback not found with informed id: " + id));
+      () -> new ValidationException("Invalid Feedback id. Not exist feedback with id: " + id));
 
     FeedbackScreenshot existingScreenshot = this.searchById(id);
 
@@ -80,7 +81,7 @@ public class FeedbackScreenshotCatalogService {
 
   public FeedbackScreenshot searchById(UUID id) {
     return feedbackScreenshotRepository.findById(id).orElseThrow(
-      () -> new EntityNotFoundException("Feedback not found with informed id: " + id));
+      () -> new EntityNotFoundException("Feedback screenshot not found with informed id: " + id));
   }
   
 }

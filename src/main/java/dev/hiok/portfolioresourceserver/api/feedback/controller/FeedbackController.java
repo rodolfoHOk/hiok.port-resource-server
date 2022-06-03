@@ -28,6 +28,7 @@ import dev.hiok.portfolioresourceserver.api.feedback.assembler.FeedbackResponseA
 import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackRequest;
 import dev.hiok.portfolioresourceserver.api.feedback.model.request.UpdateFeedbackStatusRequest;
 import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackResponse;
+import dev.hiok.portfolioresourceserver.api.feedback.openapi.controller.FeedbackControllerOpenApi;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
 import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackRegistrationService;
@@ -36,7 +37,7 @@ import dev.hiok.portfolioresourceserver.domain.feedback.service.UpdateFeedbackSt
 
 @RestController
 @RequestMapping("/v1/feedbacks")
-public class FeedbackController {
+public class FeedbackController implements FeedbackControllerOpenApi {
 
   @Autowired
   private FeedbackRegistrationService feedbackRegistrationService;
@@ -53,6 +54,7 @@ public class FeedbackController {
   @Autowired
   private FeedbackRequestDisassembler feedbackRequestDisassembler;
 
+  @Override
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public FeedbackResponse create(@Valid @RequestBody FeedbackRequest feedbackRequest) {
@@ -62,6 +64,7 @@ public class FeedbackController {
     return feedbackResponseAssembler.toRepresentationModel(createdFeedback);
   }
 
+  @Override
   @GetMapping
   public Page<FeedbackResponse> search(
     @RequestParam("status") FeedbackStatus status,
@@ -77,6 +80,7 @@ public class FeedbackController {
     return paginatedFeedbacksResponse;
   }
 
+  @Override
   @GetMapping("/{id}")
   public FeedbackResponse searchById(@PathVariable UUID id) {
     Feedback foundFeedback = feedbackRegistrationService.searchById(id);
@@ -84,6 +88,7 @@ public class FeedbackController {
     return feedbackResponseAssembler.toRepresentationModel(foundFeedback);
   }
 
+  @Override
   @PutMapping("/{id}")
   public FeedbackResponse update(
     @PathVariable UUID id, 
@@ -95,12 +100,14 @@ public class FeedbackController {
     return feedbackResponseAssembler.toRepresentationModel(updatedFeedback);
   }
 
+  @Override
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable UUID id) {
     feedbackRegistrationService.delete(id);
   }
 
+  @Override
   @PatchMapping("/{id}")
   public FeedbackResponse updateStatus(
     @PathVariable UUID id, 
