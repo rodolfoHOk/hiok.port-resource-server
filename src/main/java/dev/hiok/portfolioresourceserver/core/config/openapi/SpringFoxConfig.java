@@ -22,7 +22,7 @@ import com.fasterxml.classmate.TypeResolver;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import dev.hiok.portfolioresourceserver.api.exceptionHandler.ProblemDetails;
-import dev.hiok.portfolioresourceserver.api.feedback.openapi.model.PageableModelOpenApi;
+import dev.hiok.portfolioresourceserver.api.openapi.model.PageableModelOpenApi;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RepresentationBuilder;
@@ -60,7 +60,10 @@ public class SpringFoxConfig {
       .globalResponses(HttpMethod.DELETE, globalDeleteResponses())
       .directModelSubstitute(Pageable.class, PageableModelOpenApi.class)
       .apiInfo(apiInfoV1())
-      .tags(new Tag("Feedbacks", "feedbacks"))
+      .tags(
+        new Tag("Feedbacks", "Feedbacks"),
+        new Tag("Status", "API Status")
+      )
     ;
   }
 

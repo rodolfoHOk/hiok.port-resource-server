@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.openapi.model;
+package dev.hiok.portfolioresourceserver.api.openapi.model;
 
 import java.util.List;
 

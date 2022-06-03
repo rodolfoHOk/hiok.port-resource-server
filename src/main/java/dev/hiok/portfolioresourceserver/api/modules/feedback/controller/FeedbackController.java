@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.controller;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.controller;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.hiok.portfolioresourceserver.api.feedback.assembler.FeedbackRequestDisassembler;
-import dev.hiok.portfolioresourceserver.api.feedback.assembler.FeedbackResponseAssembler;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.UpdateFeedbackStatusRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackResponse;
-import dev.hiok.portfolioresourceserver.api.feedback.openapi.controller.FeedbackControllerOpenApi;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.assembler.FeedbackRequestDisassembler;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.assembler.FeedbackResponseAssembler;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.UpdateFeedbackStatusRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller.FeedbackControllerOpenApi;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
 import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackRegistrationService;
@@ -36,7 +36,7 @@ import dev.hiok.portfolioresourceserver.domain.feedback.service.SearchFeedbacksS
 import dev.hiok.portfolioresourceserver.domain.feedback.service.UpdateFeedbackStatusService;
 
 @RestController
-@RequestMapping("/v1/feedbacks")
+@RequestMapping("/api/v1/feedbacks")
 public class FeedbackController implements FeedbackControllerOpenApi {
 
   @Autowired
@@ -67,7 +67,7 @@ public class FeedbackController implements FeedbackControllerOpenApi {
   @Override
   @GetMapping
   public Page<FeedbackResponse> search(
-    @RequestParam("status") FeedbackStatus status,
+    @RequestParam(name = "status", required = false) FeedbackStatus status,
     @PageableDefault(size = 9) Pageable pageable) {
     Page<Feedback> foundFeedbacks = searchFeedbacksService.search(status, pageable);
 

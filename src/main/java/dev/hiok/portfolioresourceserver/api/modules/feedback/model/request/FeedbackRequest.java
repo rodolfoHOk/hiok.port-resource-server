@@ -1,9 +1,10 @@
-package dev.hiok.portfolioresourceserver.api.feedback.model.request;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.model.request;
 
 import javax.validation.constraints.NotBlank;
 
 import dev.hiok.portfolioresourceserver.core.validation.ValueOfEnum;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackType;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +12,12 @@ import lombok.Setter;
 @Setter
 public class FeedbackRequest {
   
+  @ApiModelProperty(value = "Feedback type", example = "BUG", required = true)
   @NotBlank
   @ValueOfEnum(enumClass = FeedbackType.class)
   private FeedbackType type;
 
+  @ApiModelProperty(value = "Comment about feedback", example = "The feedback listing is bugged", required = true)
   @NotBlank
   private String comment;
 

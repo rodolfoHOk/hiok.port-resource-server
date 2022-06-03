@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.assembler;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.assembler;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
 
 @Component

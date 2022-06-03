@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.controller;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,17 +24,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.hiok.portfolioresourceserver.api.feedback.assembler.FeedbackScreenshotResponseAssembler;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackScreenshotRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackScreenshotResponse;
-import dev.hiok.portfolioresourceserver.api.feedback.openapi.controller.FeedbackScreenshotControllerOpenApi;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.assembler.FeedbackScreenshotResponseAssembler;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackScreenshotRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackScreenshotResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller.FeedbackScreenshotControllerOpenApi;
 import dev.hiok.portfolioresourceserver.domain.exception.EntityNotFoundException;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
 import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackScreenshotCatalogService;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 
 @RestController
-@RequestMapping("/v1/feedbacks/{id}/screenshot")
+@RequestMapping("/api/v1/feedbacks/{id}/screenshot")
 public class FeedbackScreenshotController implements FeedbackScreenshotControllerOpenApi {
 
   @Autowired

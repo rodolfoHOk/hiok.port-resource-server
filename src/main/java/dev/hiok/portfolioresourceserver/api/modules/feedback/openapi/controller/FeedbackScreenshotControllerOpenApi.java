@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.openapi.controller;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -9,15 +9,15 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.multipart.MultipartFile;
 
 import dev.hiok.portfolioresourceserver.api.exceptionHandler.ProblemDetails;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackScreenshotRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackScreenshotResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackScreenshotRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackScreenshotResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-
 
 @Api(tags = "Feedbacks")
 public interface FeedbackScreenshotControllerOpenApi {
@@ -38,7 +38,10 @@ public interface FeedbackScreenshotControllerOpenApi {
       content = @Content(schema = @Schema(implementation = ProblemDetails.class),
       mediaType = MediaType.APPLICATION_JSON_VALUE))
   })
-  ResponseEntity<?> search(UUID id, String acceptHeader) throws HttpMediaTypeNotAcceptableException;
+  ResponseEntity<?> search(UUID id, 
+    @ApiParam(name = "Accept", value = "Accepted media type in header of requisition",
+      example = MediaType.IMAGE_JPEG_VALUE, required = true)
+    String acceptHeader) throws HttpMediaTypeNotAcceptableException;
 
   @ApiOperation("Add or replace screenshot")
   @ApiResponses({

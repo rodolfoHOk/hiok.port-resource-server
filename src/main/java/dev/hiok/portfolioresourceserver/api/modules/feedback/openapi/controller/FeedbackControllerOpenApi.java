@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.api.feedback.openapi.controller;
+package dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller;
 
 import java.util.UUID;
 
@@ -7,12 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.data.domain.Page;
 
 import dev.hiok.portfolioresourceserver.api.exceptionHandler.ProblemDetails;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.FeedbackRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.request.UpdateFeedbackStatusRequest;
-import dev.hiok.portfolioresourceserver.api.feedback.model.response.FeedbackResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.UpdateFeedbackStatusRequest;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
 import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,7 +26,9 @@ public interface FeedbackControllerOpenApi {
   FeedbackResponse create(FeedbackRequest feedbackRequest);
 
   @ApiOperation("Search")
-  Page<FeedbackResponse> search(FeedbackStatus status, Pageable pageable);
+  Page<FeedbackResponse> search(
+  @ApiParam(name = "status", value="Feedback status", example = "RESOLVED", required = false)  
+  FeedbackStatus status, Pageable pageable);
 
   @ApiOperation("Search by ID")
   @ApiResponses({
