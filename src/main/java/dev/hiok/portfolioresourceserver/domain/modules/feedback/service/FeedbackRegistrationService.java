@@ -26,6 +26,7 @@ public class FeedbackRegistrationService {
 
   @Transactional
   public Feedback create(Feedback feedBack) {
+    feedBack.setHasScreenshot(false);
     feedBack.setStatus(FeedbackStatus.PENDING);
     feedBack.setCreatedAt(OffsetDateTime.now());
     

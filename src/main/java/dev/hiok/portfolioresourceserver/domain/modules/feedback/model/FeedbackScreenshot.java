@@ -16,10 +16,13 @@ public class FeedbackScreenshot {
   @Column(name = "feedback_id")
   private UUID id;
 
+  @Column(nullable = false)
   private String filename;
 
+  @Column(nullable = false)
   private String contentType;
 
+  @Column(nullable = false)
   private Long size;
   
 }
