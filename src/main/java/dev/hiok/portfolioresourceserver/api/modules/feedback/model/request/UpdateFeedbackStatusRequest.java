@@ -1,7 +1,5 @@
 package dev.hiok.portfolioresourceserver.api.modules.feedback.model.request;
 
-import javax.validation.constraints.NotBlank;
-
 import dev.hiok.portfolioresourceserver.core.validation.ValueOfEnum;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,9 +10,8 @@ import lombok.Setter;
 @Setter
 public class UpdateFeedbackStatusRequest {
   
-  @ApiModelProperty(value = "New status of feedback", example = "RESOLVED", required = true)
-  @NotBlank
+  @ApiModelProperty(value = "New feedback status", example = "RESOLVED", required = true)
   @ValueOfEnum(enumClass = FeedbackStatus.class)
-  private FeedbackStatus status;
+  private String status;
 
 }

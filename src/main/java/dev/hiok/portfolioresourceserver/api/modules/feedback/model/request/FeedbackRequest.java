@@ -13,9 +13,8 @@ import lombok.Setter;
 public class FeedbackRequest {
   
   @ApiModelProperty(value = "Feedback type", example = "BUG", required = true)
-  @NotBlank
   @ValueOfEnum(enumClass = FeedbackType.class)
-  private FeedbackType type;
+  private String type;
 
   @ApiModelProperty(value = "Comment about feedback", example = "The feedback listing is bugged", required = true)
   @NotBlank

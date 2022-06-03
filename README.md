@@ -5,3 +5,5 @@
 ## Próximos passos:
 
 - Testar no insomnia
+
+- Flyway migrate

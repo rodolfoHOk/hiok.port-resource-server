@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, CharSequence> {
+public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, String> {
   
-  private List<String> acceptedValues;
+  private List<String> acceptedValues = null;
 
   @Override
   public void initialize(ValueOfEnum constraintAnnotation) {
@@ -19,7 +19,7 @@ public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, Ch
   }
 
   @Override
-  public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
-    return value == null || this.acceptedValues.contains(value.toString());
+  public boolean isValid(String value, ConstraintValidatorContext context) {
+    return this.acceptedValues.contains(value.toUpperCase());
   }
 }

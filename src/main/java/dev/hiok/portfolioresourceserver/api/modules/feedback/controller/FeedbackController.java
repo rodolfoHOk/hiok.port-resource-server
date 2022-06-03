@@ -113,7 +113,8 @@ public class FeedbackController implements FeedbackControllerOpenApi {
     @PathVariable UUID id, 
     @Valid @RequestBody UpdateFeedbackStatusRequest updateFeedbackStatusRequest) {
     Feedback updatedFeedback = 
-      updateFeedbackStatusService.updateStatus(id, updateFeedbackStatusRequest.getStatus());
+      updateFeedbackStatusService.updateStatus(id, 
+        FeedbackStatus.valueOf(updateFeedbackStatusRequest.getStatus()));
 
     return feedbackResponseAssembler.toRepresentationModel(updatedFeedback);
   }
