@@ -3,7 +3,7 @@ package dev.hiok.portfolioresourceserver.api.modules.feedback.model.request;
 import javax.validation.constraints.NotBlank;
 
 import dev.hiok.portfolioresourceserver.core.validation.ValueOfEnum;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackType;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

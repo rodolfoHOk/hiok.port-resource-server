@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.domain.feedback.service;
+package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
 import java.io.InputStream;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.hiok.portfolioresourceserver.domain.exception.ValidationException;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
-import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackRepository;
-import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackScreenshotRepository;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackScreenshot;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.repository.FeedbackRepository;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.repository.FeedbackScreenshotRepository;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService.NewFile;
 

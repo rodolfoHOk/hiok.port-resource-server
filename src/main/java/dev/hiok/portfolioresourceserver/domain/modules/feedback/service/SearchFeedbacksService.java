@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.domain.feedback.service;
+package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
-import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackRepository;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.repository.FeedbackRepository;
 
 @Service
 public class SearchFeedbacksService {

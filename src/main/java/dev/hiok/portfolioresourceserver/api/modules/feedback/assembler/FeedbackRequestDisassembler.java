@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
 
 @Component
 public class FeedbackRequestDisassembler {

@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.domain.feedback.service;
+package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
 import java.util.UUID;
 
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.hiok.portfolioresourceserver.domain.exception.EntityNotFoundException;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
-import dev.hiok.portfolioresourceserver.domain.feedback.repository.FeedbackRepository;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.repository.FeedbackRepository;
 
 @Service
 public class UpdateFeedbackStatusService {

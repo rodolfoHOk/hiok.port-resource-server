@@ -29,8 +29,8 @@ import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.Feedb
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackScreenshotResponse;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller.FeedbackScreenshotControllerOpenApi;
 import dev.hiok.portfolioresourceserver.domain.exception.EntityNotFoundException;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
-import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackScreenshotCatalogService;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackScreenshot;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.service.FeedbackScreenshotCatalogService;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 
 @RestController

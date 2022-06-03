@@ -1,4 +1,4 @@
-package dev.hiok.portfolioresourceserver.domain.feedback.model;
+package dev.hiok.portfolioresourceserver.domain.modules.feedback.model;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;

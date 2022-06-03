@@ -29,11 +29,11 @@ import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.Feedb
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.UpdateFeedbackStatusRequest;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.openapi.controller.FeedbackControllerOpenApi;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.Feedback;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
-import dev.hiok.portfolioresourceserver.domain.feedback.service.FeedbackRegistrationService;
-import dev.hiok.portfolioresourceserver.domain.feedback.service.SearchFeedbacksService;
-import dev.hiok.portfolioresourceserver.domain.feedback.service.UpdateFeedbackStatusService;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.service.FeedbackRegistrationService;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.service.SearchFeedbacksService;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.service.UpdateFeedbackStatusService;
 
 @RestController
 @RequestMapping("/api/v1/feedbacks")

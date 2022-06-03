@@ -3,8 +3,8 @@ package dev.hiok.portfolioresourceserver.api.modules.feedback.model.response;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackType;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

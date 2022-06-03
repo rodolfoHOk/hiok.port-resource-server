@@ -10,7 +10,7 @@ import dev.hiok.portfolioresourceserver.api.exceptionHandler.ProblemDetails;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.UpdateFeedbackStatusRequest;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackStatus;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackScreenshotResponse;
-import dev.hiok.portfolioresourceserver.domain.feedback.model.FeedbackScreenshot;
+import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackScreenshot;
 
 @Component
 public class FeedbackScreenshotResponseAssembler {
