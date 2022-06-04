@@ -4,12 +4,12 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.data.domain.Page;
 
 import dev.hiok.portfolioresourceserver.api.exceptionHandler.ProblemDetails;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.UpdateFeedbackStatusRequest;
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
+import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbacksResponse;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +26,7 @@ public interface FeedbackControllerOpenApi {
   FeedbackResponse create(FeedbackRequest feedbackRequest);
 
   @ApiOperation("Search")
-  Page<FeedbackResponse> search(
+  FeedbacksResponse search(
   @ApiParam(name = "status", value="Feedback status", example = "RESOLVED", required = false)  
   FeedbackStatus status, Pageable pageable);
 
