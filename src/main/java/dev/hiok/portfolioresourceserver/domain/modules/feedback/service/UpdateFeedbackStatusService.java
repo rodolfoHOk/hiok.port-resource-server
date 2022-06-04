@@ -1,5 +1,6 @@
 package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UpdateFeedbackStatusService {
     );
 
     foundFeedback.setStatus(status);
+    foundFeedback.setModifiedAt(OffsetDateTime.now());
 
     return foundFeedback;
   }
