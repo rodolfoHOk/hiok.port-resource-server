@@ -4,4 +4,4 @@
 
 ## Próximos passos:
 
-- Testar no insomnia
+- Auth server (outro projeto)

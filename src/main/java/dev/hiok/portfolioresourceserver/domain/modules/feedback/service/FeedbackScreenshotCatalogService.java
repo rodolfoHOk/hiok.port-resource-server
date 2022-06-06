@@ -4,12 +4,11 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import dev.hiok.portfolioresourceserver.domain.exception.EntityNotFoundException;
 import dev.hiok.portfolioresourceserver.domain.exception.ValidationException;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.FeedbackScreenshot;

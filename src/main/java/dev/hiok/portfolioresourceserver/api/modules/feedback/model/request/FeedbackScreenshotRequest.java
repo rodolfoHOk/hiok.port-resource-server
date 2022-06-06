@@ -19,6 +19,6 @@ public class FeedbackScreenshotRequest {
   @NotNull
   @MultipartFileSize(max = "1048576")
   @MultipartFileContentType(allowed = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE })
-  private MultipartFile screenshot;
+  private MultipartFile file;
 
 }
