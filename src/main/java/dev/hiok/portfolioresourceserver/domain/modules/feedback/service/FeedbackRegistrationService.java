@@ -1,8 +1,10 @@
 package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
+import java.time.Clock;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -24,11 +26,14 @@ public class FeedbackRegistrationService {
   @Autowired
   private ModelMapper modelMapper;
 
+  @Autowired
+  private Clock clock;
+
   @Transactional
   public Feedback create(Feedback feedBack) {
     feedBack.setHasScreenshot(false);
     feedBack.setStatus(FeedbackStatus.PENDING);
-    feedBack.setCreatedAt(OffsetDateTime.now());
+    feedBack.setCreatedAt(OffsetDateTime.now(clock));
     
     return feedbackRepository.save(feedBack);
   }
@@ -40,10 +45,10 @@ public class FeedbackRegistrationService {
 
   @Transactional
   public Feedback update(UUID id, Feedback feedBack) {
-    Feedback existFeedBack = searchById(id);
+    Feedback existFeedBack = searchById(id);  
     
     modelMapper.map(feedBack, existFeedBack);
-    existFeedBack.setModifiedAt(OffsetDateTime.now());
+    existFeedBack.setModifiedAt(OffsetDateTime.now(clock));
     
     return feedbackRepository.save(existFeedBack);
   }
@@ -56,6 +61,7 @@ public class FeedbackRegistrationService {
     
     try {
       feedbackRepository.deleteById(id);
+      feedbackRepository.flush();
     } catch(DataIntegrityViolationException e) {
       throw new EntityInUseException("Feedback is in use and cannot be deleted");
     }

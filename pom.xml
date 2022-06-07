@@ -11,7 +11,7 @@
 	<groupId>dev.hiok</groupId>
 	<artifactId>portifolio-resource-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>portifolio-resource-server</name>
+	<name>portfolio-resource-server</name>
 	<description>Portifólio Backend Principal</description>
 	<properties>
 		<java.version>17</java.version>

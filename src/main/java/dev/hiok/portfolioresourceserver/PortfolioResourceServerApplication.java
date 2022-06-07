@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PortifolioResourceServerApplication {
+public class PortfolioResourceServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PortifolioResourceServerApplication.class, args);
+		SpringApplication.run(PortfolioResourceServerApplication.class, args);
 	}
 
 }

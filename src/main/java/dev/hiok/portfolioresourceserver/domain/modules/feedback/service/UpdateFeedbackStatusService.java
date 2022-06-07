@@ -1,5 +1,6 @@
 package dev.hiok.portfolioresourceserver.domain.modules.feedback.service;
 
+import java.time.Clock;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -17,6 +18,9 @@ public class UpdateFeedbackStatusService {
   
   @Autowired
   private FeedbackRepository feedbackRepository;
+
+  @Autowired
+  private Clock clock;
   
   @Transactional
   public Feedback updateStatus(UUID id, FeedbackStatus status) {
@@ -25,7 +29,7 @@ public class UpdateFeedbackStatusService {
     );
 
     foundFeedback.setStatus(status);
-    foundFeedback.setModifiedAt(OffsetDateTime.now());
+    foundFeedback.setModifiedAt(OffsetDateTime.now(clock));
 
     return foundFeedback;
   }
