@@ -50,7 +50,7 @@ public class FeedbackScreenshotCatalogService {
     FeedbackScreenshot savedScreenshot = feedbackScreenshotRepository.save(feedbackScreenshot);
     feedbackScreenshotRepository.flush();
     
-    StorageService.NewFile newFile = NewFile.builder()
+    NewFile newFile = NewFile.builder()
       .filename(savedScreenshot.getFilename())
       .contentType(savedScreenshot.getContentType())
       .inputStream(fileData)

@@ -12,9 +12,10 @@ import dev.hiok.portfolioresourceserver.core.config.storage.StorageProperties;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 import dev.hiok.portfolioresourceserver.infrastructure.exception.StorageException;
 
+
 @Service
 public class LocalStorageService implements StorageService {
-  
+
   @Autowired
   private StorageProperties storageProperties;
 

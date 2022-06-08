@@ -88,7 +88,7 @@ public class FeedbackScreenshotCatalogServiceTest {
     expectedSavedScreenshot.setSize(102400L);
     InputStream fileData = new ByteArrayInputStream("test data".getBytes());
 
-    StorageService.NewFile expectedNewFile = NewFile.builder()
+    NewFile expectedNewFile = NewFile.builder()
       .filename(expectedSavedScreenshot.getFilename())
       .contentType(expectedSavedScreenshot.getContentType())
       .inputStream(fileData)
@@ -138,7 +138,7 @@ public class FeedbackScreenshotCatalogServiceTest {
     expectedSavedScreenshot.setSize(102400L);
     InputStream fileData = new ByteArrayInputStream("test data".getBytes());
 
-    StorageService.NewFile expectedNewFile = NewFile.builder()
+    NewFile expectedNewFile = NewFile.builder()
       .filename(expectedSavedScreenshot.getFilename())
       .contentType(expectedSavedScreenshot.getContentType())
       .inputStream(fileData)
