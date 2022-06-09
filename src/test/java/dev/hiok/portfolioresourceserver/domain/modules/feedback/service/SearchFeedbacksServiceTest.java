@@ -34,6 +34,7 @@ public class SearchFeedbacksServiceTest {
     Pageable pageable = PageRequest.of(0, 9);
     Pageable pagingSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), 
       Sort.Direction.DESC, "createdAt");
+    @SuppressWarnings("unchecked")
     Page<Feedback> expectedPagedFeedbacks = mock(Page.class);
     
     when(feedbackRepository.findByStatus(FeedbackStatus.PENDING, pagingSort))
@@ -48,6 +49,7 @@ public class SearchFeedbacksServiceTest {
     Pageable pageable = PageRequest.of(0, 9);
     Pageable pagingSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), 
       Sort.Direction.DESC, "createdAt");
+    @SuppressWarnings("unchecked")
     Page<Feedback> expectedPagedFeedbacks = mock(Page.class);
     
     when(feedbackRepository.findAll(pagingSort)).thenReturn(expectedPagedFeedbacks);
