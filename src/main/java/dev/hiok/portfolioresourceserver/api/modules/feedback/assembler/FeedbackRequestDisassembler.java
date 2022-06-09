@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.request.FeedbackRequest;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FeedbackRequestDisassembler {
   
-  @Autowired
-  private ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
   public Feedback toEntityModel(FeedbackRequest feedbackRequest) {
     return modelMapper.map(feedbackRequest, Feedback.class);

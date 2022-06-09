@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbackResponse;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FeedbackResponseAssembler {
 
-  @Autowired
-  private ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
   public FeedbackResponse toRepresentationModel(Feedback feedBack) {
     return modelMapper.map(feedBack, FeedbackResponse.class);

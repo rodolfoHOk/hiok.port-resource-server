@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 
 import dev.hiok.portfolioresourceserver.api.modules.feedback.model.response.FeedbacksResponse;
 import dev.hiok.portfolioresourceserver.domain.modules.feedback.model.Feedback;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FeedbacksResponseAssembler {
   
-  @Autowired
-  private ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
   public FeedbacksResponse toRepresentationModel(Page<Feedback> paginatedFeedbacks) {
     return modelMapper.map(paginatedFeedbacks, FeedbacksResponse.class);
