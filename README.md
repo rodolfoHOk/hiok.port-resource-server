@@ -4,6 +4,4 @@
 
 ## Próximos passos:
 
-- Testes controllers
-
 - Auth server (outro projeto)
