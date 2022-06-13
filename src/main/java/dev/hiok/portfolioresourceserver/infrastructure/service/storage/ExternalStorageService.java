@@ -39,8 +39,7 @@ public class ExternalStorageService implements StorageService {
     try {
       String filePath = getFilePath(newFile.getFilename());
 
-      dbxClient.files().uploadBuilder(filePath)
-        .uploadAndFinish(newFile.getInputStream());
+      dbxClient.files().uploadBuilder(filePath).uploadAndFinish(newFile.getInputStream());
 
     } catch (Exception ex) {
       throw new StorageException("Could not store file", ex);
