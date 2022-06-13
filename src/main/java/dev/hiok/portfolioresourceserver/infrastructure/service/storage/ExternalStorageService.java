@@ -1,29 +1,28 @@
 package dev.hiok.portfolioresourceserver.infrastructure.service.storage;
 
-import java.net.URL;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import com.dropbox.core.v2.DbxClientV2;
 
 import dev.hiok.portfolioresourceserver.core.config.storage.StorageProperties;
 import dev.hiok.portfolioresourceserver.domain.service.StorageService;
 import dev.hiok.portfolioresourceserver.infrastructure.exception.StorageException;
 
-@Service
 public class ExternalStorageService implements StorageService {
   
   @Autowired
   private StorageProperties storageProperties;
+
+  @Autowired
+  private DbxClientV2 dbxClient;
 
   @Override
   public RecoveredFile recover(String filename) {
     try {
       String filePath = getFilePath(filename);
 
-      //todo get from external
-      URL url = new URL(filePath); 
-      //todo get from external
-
+      String url = dbxClient.files().getTemporaryLink(filePath).getLink();
+      
       RecoveredFile recoveredFile = RecoveredFile.builder()
         .url(url.toString())
         .build();
@@ -38,10 +37,10 @@ public class ExternalStorageService implements StorageService {
   @Override
   public void store(NewFile newFile) {
     try {
-      String arquivoPath = getFilePath(newFile.getFilename());
+      String filePath = getFilePath(newFile.getFilename());
 
-      System.out.println(arquivoPath);
-      //todo: store in external
+      dbxClient.files().uploadBuilder(filePath)
+        .uploadAndFinish(newFile.getInputStream());
 
     } catch (Exception ex) {
       throw new StorageException("Could not store file", ex);
@@ -51,10 +50,9 @@ public class ExternalStorageService implements StorageService {
   @Override
   public void remove(String filename) {
     try {
-      String arquivoPath = getFilePath(filename);
+      String filePath = getFilePath(filename);
 
-      System.out.println(arquivoPath);
-      //todo: delete in external
+      dbxClient.files().deleteV2(filePath);
 
     } catch (Exception ex) {
       throw new StorageException("Could not remove file", ex);
@@ -62,7 +60,7 @@ public class ExternalStorageService implements StorageService {
   }
 
   private String getFilePath(String filename) {
-    return String.format("%s%s", storageProperties.getExternal().getDirectory(), filename);
+    return String.format("%s/%s", storageProperties.getExternal().getDirectory(), filename);
   }
 
 }

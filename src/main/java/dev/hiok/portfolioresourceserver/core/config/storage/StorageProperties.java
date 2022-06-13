@@ -34,6 +34,7 @@ public class StorageProperties {
   public class External {
     private String clientId;
     private String clientSecret;
+    private String apiToken;
     private String region;
     private String bucket;
     private String directory;
