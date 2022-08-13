@@ -1,6 +1,5 @@
 package dev.hiok.portfolioresourceserver.api.exceptionHandler;
 
-import java.nio.file.AccessDeniedException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Locale;
@@ -94,13 +93,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     return handleExceptionInternal(ex, body, new HttpHeaders(), status, request);
   }
 
-  @ExceptionHandler(AccessDeniedException.class)
-  public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
-    var status = HttpStatus.FORBIDDEN;
-    var body = createProblemDetails(ProblemType.ACCESS_DENIED, status, ex.getMessage());
-
-    return handleExceptionInternal(ex, body, new HttpHeaders(), status, request);
-  }
+//  @ExceptionHandler(AccessDeniedException.class)
+//  public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+//    var status = HttpStatus.FORBIDDEN;
+//    var body = createProblemDetails(ProblemType.ACCESS_DENIED, status, ex.getMessage());
+//
+//    return handleExceptionInternal(ex, body, new HttpHeaders(), status, request);
+//  }
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<?> handleUncaughtException(Exception ex, WebRequest request) {
